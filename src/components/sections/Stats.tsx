@@ -9,30 +9,61 @@ const stats = [
     value: 250,
     suffix: "+",
     label: "Successful Campaigns",
-    description: "Delivered across healthcare, real estate, and travel industries"
+    description: "Delivered across healthcare, real estate, and travel industries",
+    color: "blue"
   },
   {
     icon: DollarSign,
     value: 50,
     suffix: "M+",
     label: "Revenue Generated",
-    description: "For our clients using proprietary frameworks and strategies"
+    description: "For our clients using proprietary frameworks and strategies",
+    color: "green"
   },
   {
     icon: Users,
     value: 98,
     suffix: "%",
     label: "Client Retention Rate",
-    description: "Long-term partnerships built on consistent results"
+    description: "Long-term partnerships built on consistent results",
+    color: "purple"
   },
   {
     icon: Award,
     value: 15,
     suffix: "+",
     label: "Industries Served",
-    description: "With specialized expertise in key growth sectors"
+    description: "With specialized expertise in key growth sectors",
+    color: "orange"
   }
 ]
+
+const colorClasses = {
+  blue: {
+    icon: "from-blue-500 to-blue-600",
+    bg: "from-blue-50 to-blue-100/50",
+    text: "text-blue-600",
+    number: "text-blue-700"
+  },
+  green: {
+    icon: "from-green-500 to-green-600",
+    bg: "from-green-50 to-green-100/50",
+    text: "text-green-600",
+    number: "text-green-700"
+  },
+  purple: {
+    icon: "from-purple-500 to-purple-600",
+    bg: "from-purple-50 to-purple-100/50",
+    text: "text-purple-600",
+    number: "text-purple-700"
+  },
+  orange: {
+    icon: "from-orange-500 to-orange-600",
+    bg: "from-orange-50 to-orange-100/50",
+    text: "text-orange-600",
+    number: "text-orange-700"
+  }
+}
 
 function AnimatedCounter({ value, suffix, duration = 2000 }: { value: number, suffix: string, duration?: number }) {
   const [count, setCount] = useState(0);
@@ -83,11 +114,17 @@ export function Stats() {
   return (
     <section 
       id="stats-section"
-      className="py-20 bg-gray-50"
+      className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/60 relative overflow-hidden"
     >
-      <div className="container px-4 mx-auto max-w-7xl">
+      {/* Subtle background decoration */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container px-4 mx-auto max-w-7xl relative">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-600 px-5 py-2 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-200/50">
             Our Impact
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
@@ -101,19 +138,20 @@ export function Stats() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {stats.map((stat, index) => {
             const Icon = stat.icon
+            const colors = colorClasses[stat.color as keyof typeof colorClasses];
             return (
               <div 
                 key={index} 
-                className="text-center p-8 rounded-2xl bg-white border border-gray-200 hover:border-gray-300 hover-shadow hover-lift transition-all duration-300"
+                className="text-center p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-200 hover:border-gray-300 hover-shadow hover-lift transition-all duration-300"
               >
-                {/* Icon */}
-                <div className="mx-auto mb-6 p-4 bg-blue-50 rounded-2xl w-fit">
-                  <Icon className="h-8 w-8 text-blue-600" />
+                {/* Enhanced Icon */}
+                <div className={`mx-auto mb-6 p-4 bg-gradient-to-r ${colors.icon} rounded-2xl w-fit shadow-lg`}>
+                  <Icon className="h-8 w-8 text-white" />
                 </div>
                 
                 {/* Animated Number */}
                 <div className="mb-3">
-                  <span className="text-4xl md:text-5xl font-bold text-gray-900 block leading-none">
+                  <span className={`text-4xl md:text-5xl font-bold ${colors.number} block leading-none`}>
                     {isVisible ? (
                       <AnimatedCounter 
                         value={stat.value} 
@@ -140,9 +178,9 @@ export function Stats() {
           })}
         </div>
         
-        {/* Bottom CTA Section */}
+        {/* Enhanced Bottom CTA Section */}
         <div className="text-center">
-          <div className="inline-flex flex-col items-center gap-6 p-8 rounded-2xl bg-white border border-gray-200">
+          <div className="inline-flex flex-col items-center gap-6 p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg">
             <div className="flex items-center gap-3 text-gray-900">
               <Award className="h-6 w-6 text-blue-600" />
               <span className="text-xl font-semibold">Trusted by Industry Leaders Worldwide</span>
@@ -154,7 +192,7 @@ export function Stats() {
               {['Google Partner', 'Meta Business Partner', 'HubSpot Certified', 'Salesforce Partner'].map((badge, index) => (
                 <div 
                   key={index}
-                  className="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full text-sm text-gray-700 hover:bg-gray-200 transition-colors duration-200"
+                  className="flex items-center gap-2 bg-gradient-to-r from-gray-50 to-gray-100 px-4 py-2 rounded-full text-sm text-gray-700 hover:from-gray-100 hover:to-gray-200 transition-all duration-200 shadow-sm"
                 >
                   <Star className="h-3 w-3 text-yellow-500 fill-current" />
                   <span>{badge}</span>
