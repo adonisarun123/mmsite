@@ -43,10 +43,9 @@ export function MainNav({ items }: MainNavProps) {
             alt="MonkMantra"
             width={160}
             height={40}
-            className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+            className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
       </Link>
       {navItems?.length && (
@@ -56,10 +55,10 @@ export function MainNav({ items }: MainNavProps) {
               key={index}
               href={item.href || "/"}
               className={`
-                relative flex items-center text-base font-medium transition-all duration-300 group
+                relative flex items-center text-base font-medium transition-all duration-200 group
                 ${pathname === item.href 
-                  ? 'text-orange-400' 
-                  : 'text-white/90 hover:text-white'
+                  ? 'text-blue-600' 
+                  : 'text-gray-600 hover:text-gray-900'
                 }
               `}
             >
@@ -68,16 +67,13 @@ export function MainNav({ items }: MainNavProps) {
               {/* Animated underline */}
               <span 
                 className={`
-                  absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-orange-400 to-red-400 transition-all duration-300
+                  absolute bottom-0 left-0 h-0.5 bg-blue-600 transition-all duration-200
                   ${pathname === item.href 
                     ? 'w-full' 
                     : 'w-0 group-hover:w-full'
                   }
                 `}
               />
-              
-              {/* Hover background glow */}
-              <span className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 -z-10" />
             </Link>
           ))}
         </nav>

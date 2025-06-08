@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button"
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 backdrop-blur-md supports-[backdrop-filter]:bg-gradient-to-r supports-[backdrop-filter]:from-slate-900/80 supports-[backdrop-filter]:via-blue-900/80 supports-[backdrop-filter]:to-indigo-900/80 border-b border-white/10 shadow-xl">
-      <div className="container flex h-20 max-w-screen-2xl items-center px-4">
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+      <div className="container flex h-16 max-w-screen-2xl items-center px-4">
         <MainNav />
         <MobileNav />
         <div className="flex flex-1 items-center justify-end space-x-4">
@@ -17,13 +17,13 @@ export function Header() {
             <Button 
               variant="ghost" 
               asChild 
-              className="text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
+              className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200 font-medium"
             >
               <Link href="/contact">Contact</Link>
             </Button>
             <Button 
               asChild 
-              className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-semibold px-6 py-2.5 rounded-full"
+              className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm hover:shadow-md transition-all duration-200 font-medium px-6 rounded-lg hover-lift"
             >
               <Link href="/contact">Get Started</Link>
             </Button>
