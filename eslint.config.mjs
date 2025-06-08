@@ -1,0 +1,1 @@
+// This file is intentionally left blank to use Next.js default ESLint settings. 
